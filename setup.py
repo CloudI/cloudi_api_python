@@ -9,7 +9,13 @@ class PyTest(Command):
     def finalize_options(self):
         pass
     def run(self):
-        from test import *
+        import sys, pkgutil
+        directory = 'test'
+        for importer, package_name, _ in pkgutil.iter_modules([directory]):
+            full_package_name = '%s.%s' % (directory, package_name)
+            if full_package_name not in sys.modules:
+                importer.find_module(package_name
+                ).load_module(full_package_name)
 
 setup(
     name='cloudi',
