@@ -1,5 +1,6 @@
 #-*-Mode:python;coding:utf-8;tab-width:4;c-basic-offset:4;indent-tabs-mode:()-*-
 # ex: set ft=python fenc=utf-8 sts=4 ts=4 sw=4 et:
+import setuptools
 from distutils.core import setup, Command, Extension
 
 class PyTest(Command):
@@ -44,6 +45,7 @@ setup(
                 'stdc++',
             ],
             # cloudi.py can be used if this compilation fails
+            # (Python 3 doesn't work yet due to all the changes)
             optional=True,
         ),
     ],
@@ -67,5 +69,5 @@ setup(
     author='Michael Truog',
     author_email='mjtruog@gmail.com',
     url='http://cloudi.org',
-    install_requires=['erlang_py'],
+    install_requires=['erlang_py==1.3.2'],
 )
