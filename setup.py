@@ -1,6 +1,16 @@
 #-*-Mode:python;coding:utf-8;tab-width:4;c-basic-offset:4;indent-tabs-mode:()-*-
 # ex: set ft=python fenc=utf-8 sts=4 ts=4 sw=4 et:
-from distutils.core import setup, Extension
+from distutils.core import setup, Command, Extension
+
+class PyTest(Command):
+    user_options = []
+    def initialize_options(self):
+        pass
+    def finalize_options(self):
+        pass
+    def run(self):
+        from test import *
+
 setup(
     name='cloudi',
     py_modules=['cloudi', 'cloudi_c'],
@@ -31,6 +41,7 @@ setup(
             optional=True,
         ),
     ],
+    cmdclass = {'test': PyTest},
     license='BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
