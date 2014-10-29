@@ -223,10 +223,12 @@ class API(object):
     def timeout_terminate(self):
         return self.__timeout_terminate
 
-    def poll(self):
+    def poll(self, timeout=-1):
+        if timeout is None:
+            timeout = -1
         exception = None
         try:
-            self.__api.poll()
+            return self.__api.poll(timeout)
         except Exception as e:
             exception = e
         if exception is not None:
@@ -242,9 +244,9 @@ class API(object):
         else:
             raise exception
 
-    def __binary_key_value_parse(self, binary):
+    def __text_key_value_parse(self, text):
         result = {}
-        data = binary.split(b'\0')
+        data = text.split(b'\0')
         for i in range(0, len(data) - 1, 2):
             key = data[i]
             current = result.get(key, None)
@@ -257,10 +259,10 @@ class API(object):
         return result
 
     def request_http_qs_parse(self, request):
-        return self.__binary_key_value_parse(request)
+        return self.__text_key_value_parse(request)
 
     def info_key_value_parse(self, message_info):
-        return self.__binary_key_value_parse(message_info)
+        return self.__text_key_value_parse(message_info)
 
 class invalid_input_exception(Exception):
     def __init__(self, message=None):
