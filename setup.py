@@ -28,8 +28,6 @@ setup(
                 'rt',
                 'stdc++',
             ],
-            # cloudi.py can be used if this compilation fails
-            # (Python 3 doesn't work yet due to all the changes)
             optional=True,
         ),
     ],
@@ -48,10 +46,10 @@ setup(
         'Topic :: System :: Clustering',
         'Topic :: System :: Distributed Computing',
     ],
-    version='1.3.3',
+    version='1.4.0',
     description='Python CloudI API',
     author='Michael Truog',
     author_email='mjtruog@gmail.com',
     url='http://cloudi.org',
-    install_requires=['erlang_py==1.3.3'],
+    install_requires=['erlang_py==1.4.0'],
 )
