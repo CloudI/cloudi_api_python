@@ -46,10 +46,10 @@ setup(
         'Topic :: System :: Clustering',
         'Topic :: System :: Distributed Computing',
     ],
-    version='1.4.0',
+    version='1.5.0',
     description='Python CloudI API',
     author='Michael Truog',
     author_email='mjtruog@gmail.com',
     url='http://cloudi.org',
-    install_requires=['erlang_py==1.4.0'],
+    install_requires=['erlang_py==1.5.0'],
 )
