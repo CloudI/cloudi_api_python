@@ -33,7 +33,7 @@ setup(
     ],
     license='BSD',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
@@ -46,10 +46,10 @@ setup(
         'Topic :: System :: Clustering',
         'Topic :: System :: Distributed Computing',
     ],
-    version='1.5.3',
+    version='1.5.4',
     description='Python CloudI API',
     author='Michael Truog',
     author_email='mjtruog@gmail.com',
     url='http://cloudi.org',
-    install_requires=['erlang_py==1.5.3'],
+    install_requires=['erlang_py==1.5.4'],
 )
