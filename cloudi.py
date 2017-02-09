@@ -4,7 +4,7 @@
 #
 # BSD LICENSE
 # 
-# Copyright (c) 2011-2016, Michael Truog <mjtruog at gmail dot com>
+# Copyright (c) 2011-2017, Michael Truog <mjtruog at gmail dot com>
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -185,13 +185,13 @@ class API(object):
                                     timeout, priority)))
         return self.__poll_request(None, False)
 
-    def forward_(self, command, name, request_info, request,
+    def forward_(self, request_type, name, request_info, request,
                  timeout, priority, trans_id, pid):
-        if command == API.ASYNC:
+        if request_type == API.ASYNC:
             self.forward_async(name,
                                request_info, request,
                                timeout, priority, trans_id, pid)
-        elif command == API.SYNC:
+        elif request_type == API.SYNC:
             self.forward_sync(name, pattern,
                               request_info, request,
                               timeout, priority, trans_id, pid)
@@ -232,13 +232,13 @@ class API(object):
                                     OtpErlangBinary(trans_id), pid)))
         raise forward_sync_exception()
 
-    def return_(self, command, name, pattern, response_info, response,
+    def return_(self, request_type, name, pattern, response_info, response,
                 timeout, trans_id, pid):
-        if command == API.ASYNC:
+        if request_type == API.ASYNC:
             self.return_async(name, pattern,
                               response_info, response,
                               timeout, trans_id, pid)
-        elif command == API.SYNC:
+        elif request_type == API.SYNC:
             self.return_sync(name, pattern,
                              response_info, response,
                              timeout, trans_id, pid)
@@ -319,7 +319,8 @@ class API(object):
     def timeout_terminate(self):
         return self.__timeout_terminate
 
-    def __null_response(self, command, name, pattern, request_info, request,
+    def __null_response(self, request_type, name, pattern,
+                        request_info, request,
                         timeout, priority, trans_id, pid):
         return b''
 
@@ -443,8 +444,19 @@ class API(object):
                 else:
                     raise terminate_exception(self.__timeout_terminate)
             elif command == _MESSAGE_REINIT:
-                i, j = j, j + 4
-                self.__process_count = struct.unpack(b'=I', data[i:j])[0]
+                i, j = j, j + 4 + 4 + 4 + 1 + 1
+                (self.__process_count,
+                 self.__timeout_async, self.__timeout_sync,
+                 self.__priority_default,
+                 request_timeout_adjustment) = struct.unpack(
+                    b'=IIIbB', data[i:j]
+                )
+                self.__request_timeout_adjustment = bool(
+                    request_timeout_adjustment
+                )
+                if self.__request_timeout_adjustment:
+                    self.__request_timer = default_timer()
+                    self.__request_timeout = 0
             elif command == _MESSAGE_KEEPALIVE:
                 self.__send(term_to_binary(OtpErlangAtom(b'keepalive')))
             else:
@@ -592,10 +604,21 @@ class API(object):
                     return False
                 assert False
             elif command == _MESSAGE_REINIT:
-                i, j = j, j + 4
-                self.__process_count = struct.unpack(b'=I', data[i:j])[0]
+                i, j = j, j + 4 + 4 + 4 + 1 + 1
+                (self.__process_count,
+                 self.__timeout_async, self.__timeout_sync,
+                 self.__priority_default,
+                 request_timeout_adjustment) = struct.unpack(
+                    b'=IIIbB', data[i:j]
+                )
+                self.__request_timeout_adjustment = bool(
+                    request_timeout_adjustment
+                )
+                if self.__request_timeout_adjustment:
+                    self.__request_timer = default_timer()
+                    self.__request_timeout = 0
                 if j == data_size:
-                    pass
+                    data = b''
                 elif j < data_size:
                     i, j = j, j + 4
                     continue
@@ -604,7 +627,7 @@ class API(object):
             elif command == _MESSAGE_KEEPALIVE:
                 self.__send(term_to_binary(OtpErlangAtom(b'keepalive')))
                 if j == data_size:
-                    pass
+                    data = b''
                 elif j < data_size:
                     i, j = j, j + 4
                     continue
