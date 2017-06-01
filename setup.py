@@ -31,11 +31,11 @@ setup(
             optional=True,
         ),
     ],
-    license='BSD',
+    license='MIT',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Operating System :: POSIX :: BSD',
         'Operating System :: POSIX :: Linux',
