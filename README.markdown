@@ -11,7 +11,7 @@ Available as a [PyPI package at `https://pypi.python.org/pypi/cloudi/`](https://
 Author
 ------
 
-Michael Truog (mjtruog [at] gmail (dot) com)
+Michael Truog (mjtruog at protonmail dot com)
 
 License
 -------

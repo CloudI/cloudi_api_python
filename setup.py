@@ -49,7 +49,7 @@ setup(
     version='1.7.3',
     description='Python CloudI API',
     author='Michael Truog',
-    author_email='mjtruog@gmail.com',
+    author_email='mjtruog@protonmail.com',
     url='http://cloudi.org',
     install_requires=['erlang_py==1.7.3'],
 )
