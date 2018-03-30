@@ -50,6 +50,6 @@ setup(
     description='Python CloudI API',
     author='Michael Truog',
     author_email='mjtruog at protonmail dot com',
-    url='http://cloudi.org',
+    url='https://cloudi.org',
     install_requires=['erlang_py==1.7.3'],
 )
