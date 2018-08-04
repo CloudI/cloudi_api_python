@@ -2,6 +2,7 @@
 # ex: set ft=python fenc=utf-8 sts=4 ts=4 sw=4 et:
 from distutils.core import setup, Extension
 
+long_description = open('README.markdown', 'r').read()
 setup(
     name='cloudi',
     py_modules=['cloudi', 'cloudi_c'],
@@ -48,6 +49,8 @@ setup(
     ],
     version='1.7.3',
     description='Python CloudI API',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Michael Truog',
     author_email='mjtruog at protonmail dot com',
     url='https://cloudi.org',
