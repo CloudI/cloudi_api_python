@@ -57,5 +57,5 @@ setup(
     author='Michael Truog',
     author_email='mjtruog@protonmail.com',
     url='https://cloudi.org',
-    install_requires=['erlang_py==1.7.7'],
+    install_requires=['erlang_py==1.7.8'],
 )
