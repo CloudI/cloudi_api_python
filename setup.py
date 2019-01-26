@@ -50,7 +50,7 @@ setup(
         'Topic :: System :: Clustering',
         'Topic :: System :: Distributed Computing',
     ],
-    version='1.7.6',
+    version='1.7.8',
     description='Python CloudI API',
     long_description=long_description,
     long_description_content_type="text/x-rst",
