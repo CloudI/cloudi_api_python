@@ -5,8 +5,6 @@
 
 Python `CloudI API <https://cloudi.org/api.html#1_Intro>`__
 
-Available as a `PyPI package at
-``https://pypi.python.org/pypi/cloudi/`` <https://pypi.python.org/pypi/cloudi/>`__.
 
 Author
 ------
