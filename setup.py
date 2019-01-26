@@ -1,8 +1,11 @@
 #-*-Mode:python;coding:utf-8;tab-width:4;c-basic-offset:4;indent-tabs-mode:()-*-
 # ex: set ft=python fenc=utf-8 sts=4 ts=4 sw=4 et:
-from distutils.core import setup, Extension
+try:
+    from setuptools import setup, Extension
+except ImportError:
+    from distutils.core import setup, Extension
 
-long_description = open('README.markdown', 'r').read()
+long_description = open('README.rst', 'r').read()
 setup(
     name='cloudi',
     py_modules=['cloudi', 'cloudi_c'],
@@ -47,12 +50,12 @@ setup(
         'Topic :: System :: Clustering',
         'Topic :: System :: Distributed Computing',
     ],
-    version='1.7.5',
+    version='1.7.6',
     description='Python CloudI API',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     author='Michael Truog',
     author_email='mjtruog@protonmail.com',
     url='https://cloudi.org',
-    install_requires=['erlang_py==1.7.5'],
+    install_requires=['erlang_py==1.7.7'],
 )
