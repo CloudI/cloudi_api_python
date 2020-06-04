@@ -8,12 +8,6 @@ python:
   - "3.8"
   - "pypy"
   - "pypy3"
-matrix:
-  include:
-    - python: "3.8-dev"
-      dist: xenial
-    - python: "nightly"
-      dist: xenial
 before_install:
   - sudo apt-get update
   - sudo apt-get install libboost-dev erlang-dev
