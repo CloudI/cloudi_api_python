@@ -1,7 +1,7 @@
 `cloudi_api_python`
 ===================
 
-[![Build Status](https://travis-ci.org/CloudI/cloudi_api_python.png)](https://travis-ci.org/CloudI/cloudi_api_python)
+[![Build Status](https://app.travis-ci.com/CloudI/cloudi_api_python.svg?branch=master)](https://app.travis-ci.com/CloudI/cloudi_api_python)
 [![PyPI Package Version](https://img.shields.io/pypi/v/cloudi.svg?maxAge=2592000)](https://pypi.python.org/pypi/cloudi/)
 
 Python [CloudI API](https://cloudi.org/api.html#1_Intro)
