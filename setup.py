@@ -16,6 +16,7 @@ setup(
                 'cloudi_py.cpp',
                 'assert.cpp',
                 'timer.cpp',
+                'bind.cpp',
                 'cloudi.cpp',
             ],
             depends=[
@@ -24,6 +25,7 @@ setup(
                 'copy_ptr.hpp',
                 'realloc_ptr.hpp',
                 'timer.hpp',
+                'bind.hpp',
                 'cloudi.h',
                 'cloudi.hpp',
             ],
